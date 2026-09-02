@@ -11,6 +11,7 @@ interface PageProps {
 export default async function TransactionsPage({ searchParams }: PageProps) {
   const filters = await searchParams
   const transactions = await getTransactions(filters)
+  const listKey = `${filters.type ?? ""}-${filters.category ?? ""}-${filters.month ?? ""}`
 
   return (
     <div className="space-y-4">
@@ -18,7 +19,7 @@ export default async function TransactionsPage({ searchParams }: PageProps) {
         <TransactionFilters />
       </Suspense>
       <p className="text-xs text-[hsl(var(--muted-foreground))]">{transactions.length} transaction{transactions.length !== 1 ? "s" : ""}</p>
-      <TransactionList transactions={transactions} />
+      <TransactionList key={listKey} transactions={transactions} />
     </div>
   )
 }

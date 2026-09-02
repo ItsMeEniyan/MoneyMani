@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { toast } from "sonner"
 import { deleteTransaction } from "@/actions/transactions"
 import TransactionItem from "./TransactionItem"
@@ -12,6 +12,10 @@ interface Props {
 
 export default function TransactionList({ transactions: initial }: Props) {
   const [transactions, setTransactions] = useState(initial)
+
+  useEffect(() => {
+    setTransactions(initial)
+  }, [initial])
 
   async function handleDelete(id: string) {
     if (!confirm("Delete this transaction?")) return
