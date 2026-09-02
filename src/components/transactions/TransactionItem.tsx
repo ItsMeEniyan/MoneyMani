@@ -12,7 +12,6 @@ interface Props {
 export default function TransactionItem({ transaction, onDelete, showDelete }: Props) {
   const icon = CATEGORY_ICONS[transaction.category] ?? "📌"
   const date = new Date(transaction.date).toLocaleDateString("en-IN", {
-    day: "numeric",
     month: "short",
     year: "numeric",
   })

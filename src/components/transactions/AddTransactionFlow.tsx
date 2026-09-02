@@ -44,7 +44,10 @@ export default function AddTransactionFlow() {
   const [category, setCategory] = useState<string | null>(null)
   const [amount, setAmount] = useState("")
   const [note, setNote] = useState("")
-  const [date, setDate] = useState(() => new Date().toISOString().split("T")[0])
+  const [date, setDate] = useState(() => {
+    const now = new Date()
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`
+  })
   const [loading, setLoading] = useState(false)
 
   const config = type ? TYPE_CONFIG[type] : null
@@ -62,7 +65,7 @@ export default function AddTransactionFlow() {
         type,
         category,
         amount: amountNum,
-        date: new Date(date).toISOString(),
+        date: new Date(date + "-01").toISOString(),
         note: note || undefined,
       })
       toast.success("Transaction added!")
@@ -153,12 +156,12 @@ export default function AddTransactionFlow() {
         </div>
 
         <div className="space-y-2">
-          <Label className="text-xs uppercase tracking-wide text-[hsl(var(--muted-foreground))]">Date</Label>
+          <Label className="text-xs uppercase tracking-wide text-[hsl(var(--muted-foreground))]">Month</Label>
           <Input
-            type="date"
+            type="month"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            max={new Date().toISOString().split("T")[0]}
+            max={(() => { const n = new Date(); return `${n.getFullYear()}-${String(n.getMonth() + 1).padStart(2, "0")}` })()}
           />
         </div>
 
