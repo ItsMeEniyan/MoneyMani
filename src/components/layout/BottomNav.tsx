@@ -2,14 +2,14 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, List, Plus, BarChart3, Settings } from "lucide-react"
+import { LayoutDashboard, List, Plus, BarChart3, Plane } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
   { href: "/dashboard", icon: LayoutDashboard, label: "Home" },
   { href: "/transactions", icon: List, label: "History" },
   { href: "/reports", icon: BarChart3, label: "Reports" },
-  { href: "/settings", icon: Settings, label: "Settings" },
+  { href: "/trips", icon: Plane, label: "Trips" },
 ]
 
 export default function BottomNav() {
@@ -19,7 +19,7 @@ export default function BottomNav() {
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex items-center justify-around px-2 max-w-lg mx-auto">
         {navItems.slice(0, 2).map((item) => {
-          const active = pathname === item.href
+          const active = pathname === item.href || pathname.startsWith(item.href + "/")
           return (
             <Link
               key={item.href}
@@ -44,7 +44,7 @@ export default function BottomNav() {
         </Link>
 
         {navItems.slice(2).map((item) => {
-          const active = pathname === item.href
+          const active = pathname === item.href || pathname.startsWith(item.href + "/")
           return (
             <Link
               key={item.href}

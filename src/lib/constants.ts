@@ -34,6 +34,26 @@ export const INCOME_GROUPS: Record<string, string[]> = {
   "Passive Income": ["Other"],
 }
 
+export const TRIP_CATEGORIES = [
+  "Food",
+  "Accommodation",
+  "Transport",
+  "Petrol",
+  "Tickets & Entry",
+  "Shopping",
+  "Other",
+]
+
+export const TRIP_CATEGORY_ICONS: Record<string, string> = {
+  Food: "🍽️",
+  Accommodation: "🏨",
+  Transport: "🚌",
+  Petrol: "⛽",
+  "Tickets & Entry": "🎫",
+  Shopping: "🛍️",
+  Other: "📦",
+}
+
 export const CATEGORY_ICONS: Record<string, string> = {
   Salary: "💼",
   "Share Dividends": "📈",
