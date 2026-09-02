@@ -28,6 +28,7 @@ export default function TransactionFilters() {
     if (value === "ALL" || value === "") p.delete(key)
     else p.set(key, value)
     router.push(`/transactions?${p.toString()}`)
+    router.refresh()
   }
 
   return (
