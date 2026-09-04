@@ -23,6 +23,17 @@ model User {
   transactions Transaction[]
   liabilities  Liability[]
   trips        Trip[]
+  apiKeys      ApiKey[]
+}
+
+model ApiKey {
+  id        String   @id @default(cuid())
+  userId    String
+  keyHash   String   @unique
+  label     String   @default("MCP Key")
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Transaction {
