@@ -5,7 +5,11 @@ export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   const isAuthPage = pathname.startsWith("/login") || pathname.startsWith("/register")
-  const isPublic = isAuthPage || pathname.startsWith("/api/auth") || pathname === "/"
+  const isPublic =
+    isAuthPage ||
+    pathname.startsWith("/api/auth") ||
+    pathname.startsWith("/api/mcp") ||
+    pathname === "/"
 
   // NextAuth v5 JWT cookie — __Secure- prefix on HTTPS (production), plain on HTTP (dev)
   const sessionToken =
